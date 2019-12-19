@@ -3,6 +3,8 @@ const path = require('path')
 const webpackMerge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 module.exports = webpackMerge(baseWebpackConfig, {
   mode: 'production',
@@ -19,5 +21,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
         removeAttributeQuotes: true, //去除属性引用
       },
     }),
+    new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
 })

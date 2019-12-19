@@ -19,6 +19,8 @@ class App extends React.Component {
             </li>
             <li>
               <Link to="/detail">detail</Link>
+            </li><li>
+              <Link to="/async-page">async-page</Link>
             </li>
           </ul>
           <div>
