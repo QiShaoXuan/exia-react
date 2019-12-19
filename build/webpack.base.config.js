@@ -5,8 +5,9 @@ module.exports = {
     app: './src/app.js',
   },
   output: {
-    path: path.resolve('../dist'),
-    filename: 'js/[name].[hash].js',
+    path: path.join(__dirname, "../", "dist/"),
+    filename: "js/[name].bundle.[chunkhash].js",
+    chunkFilename: "js/[name].chunk.[chunkhash].js",
     publicPath: '/', // 打包后的资源的访问路径前缀
   },
   resolve: {

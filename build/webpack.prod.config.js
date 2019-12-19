@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const OptimizeCSSAssminimizeretsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = webpackMerge(baseWebpackConfig, {
   mode: 'production',
@@ -27,7 +28,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
     new BundleAnalyzerPlugin(),
   ],
   optimization: {
-    // 压缩css
+    minimize: true,
     minimizer: [
       new OptimizeCSSAssminimizeretsPlugin({
         cssProcessorOptions: {
@@ -46,6 +47,15 @@ module.exports = webpackMerge(baseWebpackConfig, {
           },
           output: {
             comments: false, // 去掉注释
+          },
+        },
+      }),
+      new TerserPlugin({
+        parallel: true,
+        sourceMap: true,
+        terserOptions: {
+          compress: {
+            drop_console: true,
           },
         },
       }),
