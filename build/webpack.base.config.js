@@ -1,4 +1,5 @@
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     app: './src/app.js',
@@ -14,6 +15,12 @@ module.exports = {
       '@': path.join(__dirname, '..', 'src'), // 在项目中使用@符号代替src路径，导入文件路径更方便
     },
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -22,28 +29,16 @@ module.exports = {
         loader: 'babel-loader', //loader的名称（必须）
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader', // 创建 <style></style>
-          },
-          {
-            loader: 'css-loader', // 转换css
-          },
-        ],
-      },
-      {
         test: /\.scss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+            },
           },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
@@ -64,5 +59,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
 }
