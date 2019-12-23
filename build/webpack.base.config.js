@@ -5,10 +5,10 @@ module.exports = {
     app: './src/app.js',
   },
   output: {
-    path: path.join(__dirname, "../", "dist/"),
-    filename: "js/[name].bundle.[chunkhash].js",
-    chunkFilename: "js/[name].chunk.[chunkhash].js",
-    publicPath: '/', // 打包后的资源的访问路径前缀
+    path : path.resolve("../dist"),
+    filename: "js/[name].[hash].js",
+    publicPath: "/" ,// 打包后的资源的访问路径前缀
+    chunkFilename: "js/[name].chunk.[hash].js",
   },
   resolve: {
     extensions: ['.js', '.json'], // 解析扩展。（当我们通过路径导入文件，找不到改文件时，会尝试加入这些后缀继续寻找文件）
