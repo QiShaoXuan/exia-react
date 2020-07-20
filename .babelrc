@@ -22,6 +22,18 @@
         "corejs": 2,
         "useBuildIns": "usage"
       }
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
     ]
   ]
 }
